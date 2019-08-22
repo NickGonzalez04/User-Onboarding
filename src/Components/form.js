@@ -1,7 +1,7 @@
 import React from 'react';
 import {withFormik, Form, Field} from "formik";
 import * as yup from "yup";
-import axois from "axois";
+import axios from "axios";
 
 function NewUserForm ({values, errors, touched}){
     return (
@@ -43,7 +43,7 @@ const FormikNewUserForm = withFormik({
     handleSubmit(values, {resetForm, setErrors, setSubmitting}) {
         if (values.email == "alreadytaken@atb,dev"){
             setErrors({email: "That email is already taken"}); 
-        } else{
+        } else {
             axios
             .post("https://reqres.in/api/users", values)
             .then(res =>{
@@ -54,7 +54,7 @@ const FormikNewUserForm = withFormik({
             .catch(err => {
                 console.log(err);
                 setSubmitting(false);
-            })
+            });
         }
         console.log(values);
     }

@@ -29,16 +29,16 @@ Form validation is one of the facets of an application that makes it feel polish
 - [X] Using Yup, set up _at least_ two different validations for each field along with custom error codes that will display on screen when validation fails.
 
 ## STEP 3 - Make a POST Request
-[ ]
+[X]
 Being able to `POST` data is a key skill of any developer, no matter your skill level.
-[ ]
+[X]
 - Craft a `POST` request using `axios` that sends your form data to the following endpoint: _https://reqres.in/api/users_
 - Verify using a `console.log()` that you are receiving a successful response back
 
 (Note: For those that are curious, we're using [reqres.in](https://reqres.in/) for this assignment's API. It's a free API that allows us to simulate a `POST` request for any data that we send it. Pretty awesome!)
 
 ## STEP 4 - Display Returned Data to Screen
-
+[ ]
 When you get your data back, you will want to do something with it, right? Let's display a list of users in our app.
 created 
 - Set up a state property called `users` that is initialized with an empty array
