@@ -19,14 +19,14 @@ We want to create a form to onboard a new user to our system. We need _at least_
 - [X] Name
 - [X] Email
 - [X] Password
-- [ ] Terms of Service (checkbox)
-- [ ] A Submit button to send our form data to the server.
+- [X] Terms of Service (checkbox)
+- [X] A Submit button to send our form data to the server.
 
 ## STEP 2 - Implement Form Validation and Error Messaging
-
+[X]
 Form validation is one of the facets of an application that makes it feel polished and controlled from a user perspective. With that in mind, implement the following:
 
-- Using Yup, set up _at least_ two different validations for each field along with custom error codes that will display on screen when validation fails.
+- [X] Using Yup, set up _at least_ two different validations for each field along with custom error codes that will display on screen when validation fails.
 
 ## STEP 3 - Make a POST Request
 
