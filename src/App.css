@@ -1,17 +1,17 @@
 .App{
     background-color: #545E60;
-    height: 900px;
+    height: 800px;
 }
-
 
 .User-form{
     width: 450px;
-    height: 600px;
+    height: 100%;
     margin: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
-  
+    background-color:#BDBEC4 ;
+    
 }
 
 input{
@@ -30,18 +30,36 @@ h3{
 line-height:10px; 
  
 }
+h6{
+    line-height:2px;
+}
 
 Form{
     align-items: center;
     display: flex;
     flex-direction: column;
 }
+.age-approval-box{
+    width: 95%;
+    display: flex;
+}
+.gender{
+    width: 95%;
+    margin: 5px;
+}
 .position{
-    width: 307px;
+    width: 95%;
+    margin: 5px;
+}
+
+.textbox{
+    width:95%;
+    height: 80%;
+    border-radius: 5px;
     margin: 5px;
 }
 button{
-    width: 307px;
+    width: 95%;
     height: 25px;
     border-radius: 6px;
     font-size: 16px;
@@ -59,6 +77,5 @@ button{
 .check{
    width: 20px;
    margin-top: 18px;
-   color: purple;
 }
 

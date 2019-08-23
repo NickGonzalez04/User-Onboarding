@@ -24,20 +24,34 @@ const NewUserForm = ({values, errors, touched, status}) =>{
              {/* error-reporting */}
              {touched.password && errors.password && <p>{errors.password}</p>} 
             <Field type="password" name="password" placeholder="Password" />
-            
+
+            <label className="age-approval-box">
+           <h6>Check if you're 18 years or older:</h6>
+            {/* error-reporting */}
+            {touched.agecheckbox && errors.agecheckbox && <p>{errors.agecheckbox}</p>}
+           <Field className="check" type="checkbox" name="agecheckbox" checked={values.agecheckbox} />
+           </label>
+        
+
+            <Field component="select" className="gender" name="gender">
+                <option>Selector Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female ">Female </option>
+                <option value="Optional">Other</option>
+            </Field>
             <Field component="select" className="position" name="role">
                 <option>Selection A Position</option>
                 <option value="Web Developer">Web Developer</option>
                 <option value="Full Stack Developer ">Full Stack Developer </option>
                 <option value="Data Scientist">Data Scientist</option>
             </Field>
-
+            <Field component="textarea" className="textbox" type="text"  name="notes"  placeholder="Reason for becoming a user...."/>
            <button>Submit</button>
            <label className="check-box">
            <h3>Agree To Terms Of Service</h3>
             {/* error-reporting */}
-            {touched.login && errors.login && <p>{errors.login}</p>}
-           <Field className="check" type="checkbox" name="login" checked={values.login} />
+            {touched.checkbox && errors.checkbox && <p>{errors.checkbox}</p>}
+           <Field className="check" type="checkbox" name="checkbox" checked={values.checkbox} />
            </label>
         </Form>
         <div className="user-container">
@@ -55,12 +69,12 @@ const NewUserForm = ({values, errors, touched, status}) =>{
     );
 };
 const FormikNewUserForm = withFormik({
-    mapPropsToValues({username, password, email, login}){
+    mapPropsToValues({username, password, email, checkbox}){
         return{
             username: username || "",
             password: password || "",
             email: email || "",
-            login: login || false
+            checkbox: checkbox || false
         };
     },
 
