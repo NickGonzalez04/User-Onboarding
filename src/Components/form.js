@@ -1,10 +1,21 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {withFormik, Form, Field} from "formik";
 import * as yup from "yup";
 import axios from "axios";
 
-function NewUserForm ({values, errors, touched}){
+const NewUserForm = ({values, errors, touched, status}) =>{
+    const [users, setUsers] = useState([]);
+        console.log("this is touched", touched);
+        useEffect(()=>{
+            if (status) {
+                console.log(status);
+                setUsers([...users, status]);
+            }
+        }, [status]);
+
     return (
+        <div className="User-form">
+        <h1>New User Form</h1>
         <Form>
             <Field type="text" name="username" placeholder="Username" />
             {/* error-reporting */}
@@ -13,35 +24,57 @@ function NewUserForm ({values, errors, touched}){
              {/* error-reporting */}
              {touched.password && errors.password && <p>{errors.password}</p>} 
             <Field type="password" name="password" placeholder="Password" />
-           <button>Submit</button>
+            
+            <Field component="select" className="position" name="role">
+                <option>Selection A Position</option>
+                <option value="Web Developer">Web Developer</option>
+                <option value="Full Stack Developer ">Full Stack Developer </option>
+                <option value="Data Scientist">Data Scientist</option>
+            </Field>
 
-           <label>
-           <Field type="checkbox" name="tos" checked={values.tos} />
+           <button>Submit</button>
+           <label className="check-box">
+           <h3>Agree To Terms Of Service</h3>
+            {/* error-reporting */}
+            {touched.login && errors.login && <p>{errors.login}</p>}
+           <Field className="check" type="checkbox" name="login" checked={values.login} />
            </label>
         </Form>
+        <div className="user-container">
+            {users.map(user => {
+                return (
+                    <div className="role-box" key={user.data.id}>
+                        <p>{user.data.username}</p>
+                        <p>{user.data.email}</p>
+                        <p>{user.data.role}</p>
+                    </div>
+                )
+            })}
+        </div>
+        </div>
     );
-}
+};
 const FormikNewUserForm = withFormik({
-    mapPropsToValues({username, password, email, tos}){
+    mapPropsToValues({username, password, email, login}){
         return{
             username: username || "",
             password: password || "",
             email: email || "",
-            tos: tos || false
+            login: login || false
         };
     },
 
     validationSchema: yup.object().shape({
         email: yup.string()
         .email("Email is not valid")
-        .required("Email is required"),
+        .required("**Email is required**"),
         password: yup.string()
         .min(8, "Password must be a minimum of 8 characters or longer")
-        .required("Password is required")
+        .required("**Password is required**"),
 
     }),
-    handleSubmit(values, {resetForm, setErrors, setSubmitting}) {
-        if (values.email == "alreadytaken@atb,dev"){
+    handleSubmit(values, {resetForm, setErrors, setStatus}) {
+        if (values.email == "alreadytaken@atb.dev"){
             setErrors({email: "That email is already taken"}); 
         } else {
             axios
@@ -49,11 +82,12 @@ const FormikNewUserForm = withFormik({
             .then(res =>{
                 console.log(res);
                 resetForm();
-                setSubmitting(false);
+                setStatus(res);
+                
             })
             .catch(err => {
                 console.log(err);
-                setSubmitting(false);
+               
             });
         }
         console.log(values);

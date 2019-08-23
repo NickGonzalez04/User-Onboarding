@@ -4,10 +4,10 @@ import NewUserForm from './Components/form';
 
 
 function App() {
+
   return (
     <div className="App">
-   <NewUserForm/>
-    
+   <NewUserForm />
     </div>
   );
 }
